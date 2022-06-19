@@ -1,5 +1,7 @@
 //importing the schema constructor and model function
 const { Schema, model } = require('mongoose');
+//import the dateFormat function so that we can use it in this file
+const dateFormat = require('../utils/dateFormat');
 
 //Created a schema, using schema constructor that we imported from Mongoose; define the fields with specific data types
 const PizzaSchema = new Schema({
@@ -11,7 +13,8 @@ const PizzaSchema = new Schema({
     },
     createdAt: {
         type: Date,
-        default: Date.now 
+        default: Date.now, 
+        get: (createdAtVal) => dateFormat(createdAtVal)     //Mongoose uses 'getters' to transform the data by default everytime its queried; 'get' transform data before it gets to the controller
     }, 
     size: {
         type: String,
@@ -29,6 +32,7 @@ const PizzaSchema = new Schema({
     //tell the schema that we can use virtuals
     toJSON: {
         virtuals: true,
+        getters: true           //tell Mongoose model to use the 'getter' function 
     },
     id: false       //set to false b/c virtual mongoose usually returns an id
 }
