@@ -22,6 +22,8 @@ const PizzaSchema = new Schema({
     }, 
     size: {
         type: String,
+        required: true,
+        enum: ['Personal', 'Small', 'Medium', 'Large', 'Extra Large'],      //enum=enumerable; a set of data that can ben iterated over
         default: 'Large'
     }, 
     toppings: [],  //empty [], array data type
