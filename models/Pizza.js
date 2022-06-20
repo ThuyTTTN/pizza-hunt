@@ -6,10 +6,14 @@ const dateFormat = require('../utils/dateFormat');
 //Created a schema, using schema constructor that we imported from Mongoose; define the fields with specific data types
 const PizzaSchema = new Schema({
     pizzaName: {
-        type: String
+        type: String,
+        required: true,         //requiring data to exist for this field
+        trim: true
     },
     createdBy: {
-        type: String
+        type: String,
+        required: true,         //requiring data to exist for this field
+        trim: true
     },
     createdAt: {
         type: Date,
