@@ -12,10 +12,13 @@ const ReplySchema = new Schema(
             default: () => new Types.ObjectId()
         },
         replyBody: {
-            type: String
+            type: String,
+            required: true,      //requiring data to exist for this field
+            trim: true
         },
         writtenBy: {
-            type: String    
+            type: String,
+            required: true    //requiring data to exist for this field
         },
         createdAt: {
             type: Date,
@@ -33,10 +36,12 @@ const ReplySchema = new Schema(
 const CommentSchema = new Schema(
     {
     writtenBy: {
-        type: String    
+        type: String,
+        required: true      //requiring data to exist for this field
     },
     commentBody: {
-        type: String
+        type: String,
+        required: true      //requiring data to exist for this field
     },
     createdAt: {
         type: Date,
