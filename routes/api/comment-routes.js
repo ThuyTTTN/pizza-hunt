@@ -1,11 +1,20 @@
 const router = require('express').Router();
 
-const { addComment, removeComment } = require('../../controllers/comment-controller');
+//add addReply and removeReply
+const { addComment, removeComment, addReply, removeReply } = require('../../controllers/comment-controller');
 
 // api/coments/<pizzaId>
 router.route('/:pizzaId').post(addComment);
 
 // /api/comments/<pizzaId>/<commentId>
-router.route('/:pizzaId/:commentId').delete(removeComment);
+//PUT route; we're not creating a new reply, just updating it
+router
+  .route('/:pizzaId/:commentId')
+  .put(addReply)
+  .delete(removeComment)
+
+//DELETE route to handle removeReply
+router.route('/:pizzaId/:commentId/:replyId').delete(removeReply);
+
 
 module.exports = router;
